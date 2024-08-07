@@ -1,0 +1,25 @@
+﻿TodoListAPI/
+│
+├── Controllers/
+│   ├── AuthController.cs
+│   └── TodoController.cs
+│
+├── Data/
+│   └── ApiDbContext.cs
+│
+├── Models/
+│   ├── TodoItem.cs
+│   └── User.cs
+│
+├── Repositories/
+│   ├── ITodoRepository.cs
+│   ├── IUserRepository.cs
+│   ├── TodoRepository.cs
+│   └── UserRepository.cs
+│
+├── Properties/
+│   └── launchSettings.json
+│
+├── appsettings.json
+├── Program.cs
+└── Startup.cs
