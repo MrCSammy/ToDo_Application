@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using ToDo_Application;
 
-namespace TodoListAPI
+namespace ToDo_Application
 {
     public class Program
     {

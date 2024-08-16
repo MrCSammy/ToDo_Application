@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using ToDo_Application.Data;
 using ToDo_Application.Models;
 
@@ -16,16 +16,15 @@ namespace ToDo_Application.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<TodoItem>> GetTodos(int userId)
+        public async Task<IEnumerable<TodoItem>> GetTodosByUser(string userId)
         {
-            return await _context.TodoItems.Where(user_id => user_id.UserId == userId).ToListAsync();
+            return await _context.TodoItems.Where(t => t.UserId == userId).ToListAsync();
         }
 
-        public async Task<TodoItem> AddTodoItem(TodoItem todoItem)
+        public async Task AddTodoItem(TodoItem todoItem)
         {
             _context.TodoItems.Add(todoItem);
             await _context.SaveChangesAsync();
-            return todoItem;
         }
     }
 }

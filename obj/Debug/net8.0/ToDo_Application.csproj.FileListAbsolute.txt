@@ -135,3 +135,5 @@ C:\Users\Smart Samuel\source\repos\ToDo_Application\bin\Debug\net8.0\ru\Microsof
 C:\Users\Smart Samuel\source\repos\ToDo_Application\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Smart Samuel\source\repos\ToDo_Application\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Smart Samuel\source\repos\ToDo_Application\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Smart Samuel\source\repos\ToDo_Application\obj\Debug\net8.0\ToDo_Application.sourcelink.json
+C:\Users\Smart Samuel\source\repos\ToDo_Application\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

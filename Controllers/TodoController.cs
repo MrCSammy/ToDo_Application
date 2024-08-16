@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using ToDo_Application.Models;
 using ToDo_Application.Repositories;
 
 namespace ToDo_Application.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class TodoController : ControllerBase
     {
         private readonly ITodoRepository _todoRepository;
@@ -18,16 +18,23 @@ namespace ToDo_Application.Controllers
         }
 
         [HttpGet("{userId}")]
-        public async Task<IEnumerable<TodoItem>> GetTodos(int userId)
+        public async Task<IActionResult> GetTodos(string userId)
         {
-            return await _todoRepository.GetTodos(userId);
+            var todos = await _todoRepository.GetTodosByUser(userId);
+            return Ok(todos);
         }
 
+        [Authorize]
         [HttpPost]
-        public async Task<IActionResult> AddTodoItem([FromBody] TodoItem todoItem)
+        public async Task<IActionResult> CreateTodo([FromBody] TodoItem todoItem)
         {
-            var createdTodoItem = await _todoRepository.AddTodoItem(todoItem);
-            return CreatedAtAction(nameof(GetTodos), new { userId = createdTodoItem.UserId }, createdTodoItem);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _todoRepository.AddTodoItem(todoItem);
+            return CreatedAtAction(nameof(GetTodos), new { userId = todoItem.UserId }, todoItem);
         }
     }
 }

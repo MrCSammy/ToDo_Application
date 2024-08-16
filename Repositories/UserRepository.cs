@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using ToDo_Application.Data;
 using ToDo_Application.Models;
 using ToDo_Application.Repositories;
-namespace ToDo_Application.Repositories
+
+namespace ToDo_Application
 {
     public class UserRepository : IUserRepository
     {
@@ -14,9 +16,15 @@ namespace ToDo_Application.Repositories
             _context = context;
         }
 
-        public async Task<User> Authenticate(string username, string password)
+        public async Task<User> GetUserByUsername(string username)
         {
-            return await _context.Users.SingleOrDefaultAsync(u => u.Username == username && u.Password == password);
+            return await _context.Users.SingleOrDefaultAsync(u => u.Username == username);
+        }
+
+        public async Task AddUser(User user)
+        {
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
         }
     }
 }
